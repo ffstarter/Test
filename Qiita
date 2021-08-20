@@ -1,0 +1,21 @@
+from botocore.exceptions import ClientError
+if __name__ == '__main__':
+    try:
+        table = boto3.resource('dynamodb').Table('TableName')
+
+        # DynamoDBからのエラーが発生するコードをここに書く
+
+    except ClientError as e:
+        print(e)
+        print(e.response['Error']['Message']) # エラーメッセージ
+        print(e.response['Error']['Code'])    # エラーコード（Exceptionの種類を示す文字列）
+        print(e.response['ResponseMetadata']['RequestId'])
+        print(e.response['ResponseMetadata']['HTTPStatusCode']) # ステータスコード
+        print(e.response['ResponseMetadata']['HTTPHeaders']['server'])
+        print(e.response['ResponseMetadata']['HTTPHeaders']['date'])
+        print(e.response['ResponseMetadata']['HTTPHeaders']['content-type'])
+        print(e.response['ResponseMetadata']['HTTPHeaders']['content-length'])
+        print(e.response['ResponseMetadata']['HTTPHeaders']['connection'])
+        print(e.response['ResponseMetadata']['HTTPHeaders']['x-amzn-requestid'])
+        print(e.response['ResponseMetadata']['HTTPHeaders']['x-amz-crc32'])
+        print(e.response['ResponseMetadata']['RetryAttempts'])
